@@ -1,0 +1,15 @@
+﻿body {
+
+}
+
+.form-horizontal {
+    margin: 0 auto;
+    border-radius: 10px;
+    text-align:center;
+    width: 300px;
+}
+
+.form-control {
+    margin: 0 auto;
+    width: auto;
+}

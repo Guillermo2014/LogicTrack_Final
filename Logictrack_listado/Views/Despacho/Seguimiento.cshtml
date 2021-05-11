@@ -1,0 +1,85 @@
+﻿
+@{ ViewBag.Title = "Seguimiento"; }
+
+
+<div>
+    <h1>Seguimiento</h1>
+
+    <div id="chartContainerPie" class="row">
+        <div class="col-md-12">
+            <canvas id="myChartSeguimiento"> </canvas>
+        </div>
+    </div>
+
+    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Documento de Entrega</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group row">
+                            <label for="Fecha" class="col-sm-2 col-form-label">Fecha Entrega</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="Fecha" id="Fecha" value="@DateTime.Now.Date.ToShortDateString()" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Encargado" class="col-sm-2 col-form-label">Encargado de Recepcion</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="Encargado">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Observacion" class="col-sm-2 col-form-label">Observación</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" id="Observacion" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <input class="btn btn-primary" id="boton" type="submit" value="Finalizar">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">
+        Finalizar Transporte
+    </button>
+</div>
+
+<script type="text/javascript">
+
+    $("#boton").click(function () {
+
+    var expenseobject = {
+    fechaCreacion:$('#Fecha').val() ,
+    encargadoRecepcion: $('#Encargado').val() ,
+    observacion: $('#Observacion').val(),
+
+    };
+
+    console.log(expenseobject);
+
+        $.ajax({
+            url: '@Url.Action("Create", "Entregas")',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ entrega: expenseobject }),
+            success: function (result) {
+
+             }
+            });
+
+            });
+</script>
+
+
